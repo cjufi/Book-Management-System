@@ -1,8 +1,10 @@
-package com.cjufi.bookmanagement.security;
+package com.cjufi.bookmanagement.service.impl;
 
 import com.cjufi.bookmanagement.model.User;
 import com.cjufi.bookmanagement.repository.UserRepo;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,11 +16,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@AllArgsConstructor
+
+@NoArgsConstructor
 @Service
 public class UserDetailsServiceImplementation implements UserDetailsService {
 
-    private final UserRepo userRepo;
+    private UserRepo userRepo;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -31,7 +34,7 @@ public class UserDetailsServiceImplementation implements UserDetailsService {
     private Collection<? extends GrantedAuthority> getAuthorities(User user){
 
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
         return authorities;
     }
 }

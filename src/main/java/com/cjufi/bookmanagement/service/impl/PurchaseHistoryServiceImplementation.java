@@ -12,7 +12,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @Service
-public class PurchaseHistoryServiceImpl implements PurchaseHistoryService {
+public class PurchaseHistoryServiceImplementation implements PurchaseHistoryService {
 
     private PurchaseHistoryRepo purchaseHistoryRepo;
 
