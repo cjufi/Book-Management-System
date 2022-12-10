@@ -3,22 +3,17 @@ package com.cjufi.bookmanagement.service.impl;
 import com.cjufi.bookmanagement.model.Book;
 import com.cjufi.bookmanagement.repository.BookRepo;
 import com.cjufi.bookmanagement.service.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 public class BookServiceImpl implements BookService {
 
-    private final BookRepo bookRepo;
-
-    @Autowired
-    public BookServiceImpl(BookRepo bookRepo) {
-        this.bookRepo = bookRepo;
-    }
-
+    private BookRepo bookRepo;
 
     @Override
     public Book saveBook(Book book) {

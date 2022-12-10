@@ -4,7 +4,7 @@ import com.cjufi.bookmanagement.model.Role;
 import com.cjufi.bookmanagement.model.User;
 import com.cjufi.bookmanagement.repository.UserRepo;
 import com.cjufi.bookmanagement.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,15 +13,11 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+@AllArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserRepo userRepo;
-
-    @Autowired
-    public UserServiceImpl(UserRepo userRepo) {
-        this.userRepo = userRepo;
-    }
+    private UserRepo userRepo;
 
     private PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
