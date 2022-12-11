@@ -11,5 +11,4 @@ public interface PurchaseHistoryService {
 
     List<PurchaseItem> findPurchasedItemsOfUser(Long userId);
 
-
 }

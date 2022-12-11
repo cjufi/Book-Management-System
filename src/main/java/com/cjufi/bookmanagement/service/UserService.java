@@ -10,4 +10,8 @@ public interface UserService {
     Optional<User> findByUsername(String username);
 
     void makeAdmin(String username);
+
+    String login(String username, String password);
+
+    String signUp(User user);
 }
