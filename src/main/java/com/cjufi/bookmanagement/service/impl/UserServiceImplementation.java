@@ -47,6 +47,7 @@ public class UserServiceImplementation implements UserService {
     public void makeAdmin(String username) {
         userRepo.updateUserRole(username,Role.ADMIN);
     }
+
     @Override
     public String login(String username, String password) {
         if (userRepo.findByUsername(username) == null) throw new UsernameNotFoundException("User not found");
