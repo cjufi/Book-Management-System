@@ -48,7 +48,8 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .antMatchers("/user").permitAll()
+                .antMatchers("/user/login").hasAuthority("SCOPE_ADMIN")
+                .antMatchers("/user/signup").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

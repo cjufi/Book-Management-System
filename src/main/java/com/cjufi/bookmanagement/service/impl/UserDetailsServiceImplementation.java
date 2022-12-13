@@ -2,9 +2,7 @@ package com.cjufi.bookmanagement.service.impl;
 
 import com.cjufi.bookmanagement.model.User;
 import com.cjufi.bookmanagement.repository.UserRepo;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

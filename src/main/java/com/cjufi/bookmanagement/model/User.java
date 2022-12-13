@@ -1,10 +1,14 @@
 package com.cjufi.bookmanagement.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "users")
@@ -30,6 +34,4 @@ public class User {
     @Column(name = "role", nullable = false)
     private Role role;
 
-    @Transient
-    private String token;
 }
