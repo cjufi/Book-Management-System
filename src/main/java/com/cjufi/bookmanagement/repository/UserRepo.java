@@ -16,6 +16,6 @@ public interface UserRepo extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String username);
 
     @Modifying
-    @Query("update User set role = :role where username = :username")// if it is a select query no need for modifying
+    @Query("update User set role = :role where username = :username")
     void updateUserRole(@Param("username") String username, @Param("role") Role role);
 }

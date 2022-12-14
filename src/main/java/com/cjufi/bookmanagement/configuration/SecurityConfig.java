@@ -10,6 +10,7 @@ import com.nimbusds.jose.proc.SecurityContext;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,6 +25,7 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @AllArgsConstructor
 @Configuration
@@ -46,10 +48,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http
-                .csrf().disable()
-                .authorizeHttpRequests()
-                .antMatchers("/user/login").hasAuthority("SCOPE_ADMIN")
+                .csrf()
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .and().authorizeHttpRequests()
+                .antMatchers("/user/login").permitAll()
                 .antMatchers("/user/signup").permitAll()
+                .antMatchers(HttpMethod.POST, "/book/**").hasAnyAuthority("SCOPE_USER","SCOPE_ADMIN")
+                .antMatchers(HttpMethod.GET,"/book/**").hasAnyAuthority("SCOPE_USER","SCOPE_ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/book/**").hasAuthority("SCOPE_ADMIN")
                 .anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

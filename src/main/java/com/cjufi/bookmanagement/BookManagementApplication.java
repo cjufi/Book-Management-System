@@ -1,7 +1,6 @@
 package com.cjufi.bookmanagement;
 
 import com.cjufi.bookmanagement.configuration.RsaKeyProperties;
-import com.cjufi.bookmanagement.model.Role;
 import com.cjufi.bookmanagement.model.User;
 import com.cjufi.bookmanagement.service.UserService;
 import org.springframework.boot.CommandLineRunner;
@@ -10,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
-import java.time.LocalDateTime;
 
 @EnableConfigurationProperties(RsaKeyProperties.class)
 @SpringBootApplication
